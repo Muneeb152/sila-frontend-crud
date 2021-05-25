@@ -11,7 +11,7 @@
        <v-card ref="form" width="400" class="mx-auto mr-8" >
         <v-card-text>
             <div style="text-align:center;">
-                <h1 style="color:red;">Blood Donation System</h1>
+                <h1 class="red--text">Blood Donation System</h1>
               <br>
               <br>
            <h2 style="color:black;" class="font-weight-medium"> Sign In</h2>
@@ -40,17 +40,17 @@
              :rules="[() => !!pasword || 'This field is required']"
             :error-messages="errorMessages"
           ></v-text-field>
-          <a class="primary--text font-weight-bold ml-6 mb-2" href="">Forgot Email? </a>
+          <a class="red--text font-weight-bold ml-6 mb-2" href="">Forgot Email? </a>
           <br>
           <br>
           <br>
         </v-card-text>
         <v-card-actions class="my-n13">
-            <router-link to="/SignUp"><a class="primary--text font-weight-bold ml-8" href="">Create Account </a></router-link>
+            <router-link to="/SignUp"><a class="red--text font-weight-bold ml-8" href="">Create Account </a></router-link>
           <v-spacer></v-spacer>
           <v-btn
-            class="mr-7 mb-2" 
-            color="primary"
+            class="mr-7 mb-2 white--text" 
+            color="red"
             @click="signInfo"
           >
            LogIn

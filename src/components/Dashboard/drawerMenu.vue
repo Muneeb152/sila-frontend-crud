@@ -60,8 +60,8 @@ export default {
     loader: false,
     items: [
       { title: "Dashboard", linkTo: "/dashboard", icon: "dashboard" },
-      { title: "Donors", linkTo: "/", icon: "groups" },
-      { title: "Receiver", linkTo: "/", icon: "groups" },
+      { title: "Donors", linkTo: "/Donor", icon: "groups" },
+      { title: "Receiver", linkTo: "/Receiver", icon: "groups" },
     ],
     employeeData: {
       empName: " ",
@@ -93,37 +93,39 @@ export default {
   methods: {
     ...mapActions(["getTranscations", "getVendor" ,"getCustomersData"]),
     fetchData(item) {
-      if (item.title == "Transactions") {
-        this.loader = true;
-        this.getTranscations().then(
-          (response) => {
-            if (response.status == 200) {
-              this.loader = false;
-              this.$router.push("/transaction-page");
-            }
-          },
-          (error) => {
-            console.log("error::", error);
-            this.loader = false;
-          }
-        );
-      } else if (item.title == "Vendors") {
-        this.loader = true;
-        this.getVendor().then(
-          (response) => {
-            if (response.status == 200) {
-              this.loader = false;
-              this.$router.push("/vendor-page").catch(() => {});
-            }
-          },
-          (error) => {
-            console.log("error::", error);
-            this.loader = false;
-          }
-        );
-      } else if (item.title == "Invoice") {
+      if (item.title == "Donors") {
         this.loader = false;
-        this.$router.push("/invoice-page").catch(() => {});
+         this.$router.push("/Donor");
+        // this.getTranscations().then(
+        //   (response) => {
+        //     if (response.status == 200) {
+        //       this.loader = false;
+        //       this.$router.push("/Donor");
+        //     }
+        //   },
+        //   (error) => {
+        //     console.log("error::", error);
+        //     this.loader = false;
+        //   }
+      } 
+      else if (item.title == "Receiver") {
+        this.loader = false;
+        this.$router.push("/Receiver");
+        // this.getVendor().then(
+        //   (response) => {
+        //     if (response.status == 200) {
+        //       this.loader = false;
+        //       this.$router.push("/vendor-page").catch(() => {});
+        //     }
+        //   },
+        //   (error) => {
+        //     console.log("error::", error);
+        //     this.loader = false;
+        //   }
+      }
+        else if (item.title == "Dashboard") {
+        this.loader = false;
+        this.$router.push("dashboard").catch(() => {});
         // this.getInvoicesData().then(
         //   (response) => {
         //     if (response.status == 200) {

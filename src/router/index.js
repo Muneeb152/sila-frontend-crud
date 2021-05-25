@@ -15,9 +15,9 @@ const routes = [
     component: () => import("@/views/SignUp.vue"),
   },
   {
-    path: '/Donor',
-    name: 'Donor',
-    component: () => import("@/views/Donor.vue"),
+    path: '/ExtraSign',
+    name: 'ExtraSign',
+    component: () => import("@/views/ExtraSign.vue"),
   },
   {
   path: "/dashboard",
@@ -25,9 +25,19 @@ const routes = [
   component: () => import("../views/Dashboard.vue"),
   children: [
     {
-      path: "/dashboard",
-      name: "dashboard home",
-      component: () => import("@/views/DashboardHome.vue"),
+      path: '/Donor',
+      name: 'Donor',
+      component: () => import("@/views/Donor.vue"),
+    },
+    {
+      path: '/Receiver',
+      name: 'Receiver',
+      component: () => import("@/views/Receiver.vue"),
+    },
+    {
+    path: "/dashboard",
+   name: "dashboard Home",
+  component: () => import("../views/DashboardHome.vue"),
     },
   ],
 },
