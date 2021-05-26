@@ -15,9 +15,9 @@ const routes = [
     component: () => import("@/views/SignUp.vue"),
   },
   {
-    path: '/ExtraSign',
-    name: 'ExtraSign',
-    component: () => import("@/views/ExtraSign.vue"),
+    path: '/ForgetPassword',
+    name: 'ForgetPassword',
+    component: () => import("@/views/ForgetPassword.vue"),
   },
   {
   path: "/dashboard",

@@ -1,223 +1,253 @@
-<!-- this component is used to create a registration page -->
+<!-- This Component is used to Sign Up to Blood Donation System -->
 <template>
-  <v-card class="justify-center pt-20 pa-18" elevation="0">
-    <v-row>
-      <v-col cols="12" md="8" sm="6" class="mt-8 mx-auto">
-        <v-card class="pa-2" max-width="70%" elevation="0" tile>
-          <img class="ml-16" width="100%" height="80%" src="@/assets/donation.jpg" />
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4" sm="6" class="mt-8">
-      <v-card ref="form" width="390" height="1040" class="mx-auto ml-4">
-        <v-card-text>
-            <div style="text-align:center; color:black">
-              <h1 style="color:red">Blood Donation System</h1>
+  <v-card
+  max-width="600"
+  class="pa-8 mt-8 mb-8 rounded mx-auto"
+  outlined
+  >
+    <v-card-text  xs4>
+      <v-layout row class=" mb-n6" wrap justify-space-between>
+        <v-flex xs12 >
+          <v-layout row wrap justify-space-between>
+                <!--Main Heading-->
+            <v-flex xs12 lg12 class="mb-2">
+              <div style="text-align:center; color:black">
+              <h1 class="red--text">Blood Donation System</h1>
               <br>
               <br>
+              <!--SignUp Heading-->
            <h2 class="font-weight-medium"> Sign Up</h2>
            <br>
            </div>
-          <v-text-field
-          class="ml-6 mr-6"
-            ref="name"
-            v-model="name"
-            :rules="[() => !!name || 'This field is required']"
-            :error-messages="errorMessages"
-            label="Name"
-            required
-            outlined
-          ></v-text-field>
-             <v-select
+            </v-flex>
+            <!--Name TextField-->
+            <v-flex xs12 lg6 class="mb-n1">
+              <v-text-field
+                v-model="firstname"
+                label="Name"
+                type="text"
+                outlined
+                dense
+                :rules="[() => !!firstname || 'This field is required']"
+              ></v-text-field>
+            </v-flex>
+            <!--Gender TextField-->
+            <v-flex xs12 lg5 class="mb-n1">
+              <v-select
+              dense
              v-model="Gender"
-             class="ml-6 mr-6"
           :items="items"
           label="Gender"
           outlined
           :rules="[() => !!Gender || 'This field is required']"
-            :error-messages="errorMessages"
         ></v-select>
-         <v-select
-             v-model="UserType"
-             class="ml-6 mr-6"
-          :items="items2"
-          label="User Type"
-          outlined
-          :rules="[() => !!UserType || 'This field is required']"
-            :error-messages="errorMessages"
-        ></v-select>
-        <v-select
-             v-model="BloodGroup"
-             class="ml-6 mr-6"
+            <!--City TextField-->
+            </v-flex>
+            <v-flex xs12 lg6 class="mb-n1">
+              <v-text-field
+                v-model="City"
+                label="City"
+                type="text"
+                outlined
+                dense
+                required
+                :rules="[() => !!City || 'This field is required']"
+              ></v-text-field>
+            </v-flex>
+            <!--Blood Group TextField-->
+            <v-flex xs12 lg5 class="mb-n1">
+              <v-select
+              dense
+             v-model="blood"
           :items="items1"
           label="Blood Group"
           outlined
-          :rules="[() => !!BloodGroup || 'This field is required']"
-            :error-messages="errorMessages"
+          required
+          :rules="[() => !!blood || 'This field is required']"
         ></v-select>
-        <v-text-field
-          class="ml-6 mr-6"
-            ref="Contact NO"
-            v-model="age"
-            :rules="[() => !!age || 'This field is required']"
-            :error-messages="errorMessages"
-            label="Age"
-            required
-            outlined
-            type="number"
-          ></v-text-field>
-        <v-text-field
-          class="ml-6 mr-6"
-            ref="city"
-            v-model="city"
-            :rules="[() => !!city || 'This field is required']"
-            :error-messages="errorMessages"
-            label="City"
-            required
-            outlined
-          ></v-text-field>
-          <v-text-field
-          class="ml-6 mr-6"
-            ref="Contact NO"
-            v-model="contact"
-            :rules="[() => !!contact || 'This field is required']"
-            :error-messages="errorMessages"
-            label="Contact Number"
-            required
-            outlined
-            type="number"
-          ></v-text-field>
-           <v-text-field
-          class="ml-6 mr-6"
-            ref="email"
-            v-model="email"
-            :rules="emailRules"
-            :error-messages="errorMessages"
-            label="Email"
-            required
-            outlined
-            type="email"
-          ></v-text-field>
-           <v-text-field
+            </v-flex>
+            <!--Age TextField-->
+            <v-flex xs12 lg6>
+              <v-text-field
+              v-model="Age"
+              :rules="[() => !!Age || 'This field is required']"
+              type="number"
+              outlined
+              dense
+              label="Age"
+              ></v-text-field>
+            </v-flex>
+            <!--Usert Type TextField-->
+            <v-flex xs12 lg5 class="mb-n1">
+              <v-select
+              dense
+             v-model="user"
+          :items="items2"
+          label="User type"
+          outlined
+          required
+          :rules="[() => !!user || 'This field is required']"
+        ></v-select>
+        <!--Email TextField-->
+            </v-flex>
+            <v-flex xs12 lg6 class="mb-n1">
+              <v-text-field
+                v-model="Email"
+                label="Email"
+                type="text"
+                outlined
+                dense
+                required
+                :rules="emailRules"
+              ></v-text-field>
+              <!--Contact Number TextField-->
+            </v-flex>
+            <v-flex xs12 lg5>
+              <v-text-field
+              v-model="cnumber"
+              type="number"
+              outlined
+              dense
+              required
+              label="Contact number"
+              :rules="[() => !!cnumber || 'This field is required']"
+              ></v-text-field>
+              <!--Password TextField-->
+            </v-flex>
+            <v-flex xs12 lg6 class="mb-n1">
+                <v-text-field
            v-model="pasword"
             required
             outlined
+            dense
             :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="show3 ? 'text' : 'password'"
             name="input-10-2"
             label="Password"
-            class="input-group--focused ml-6 mr-6"
             @click:append="show3 = !show3"
-             :rules="[() => !!pasword || 'This field is required']"
-            :error-messages="errorMessages"
+             :rules="passwordRules"
           ></v-text-field>
-          <v-text-field
+           <!--Confirm Password TextField-->
+            </v-flex>
+            <v-flex xs12 lg5 class="mb-n1">
+                <v-text-field
            v-model="cpasword"
             required
             outlined
+            dense
             :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="show4 ? 'text' : 'password'"
             name="input-10-2"
             label="Confirm Password"
-            class="input-group--focused ml-6 mr-6"
+            class="input-group--focused"
             @click:append="show4 = !show4"
-             :rules="[() => !!cpasword || 'This field is required']"
-            :error-messages="errorMessages"
+             :rules="passwordRules"
           ></v-text-field>
-          <br>
-        </v-card-text>
-        <v-card-actions class="my-n13">
-            <router-link to="/"><a class="primary--text font-weight-bold ml-8" href="">LogIn to Account  </a></router-link>
-          <v-spacer></v-spacer>
-          <v-btn
-            class="mr-7 mb-2" 
-            color="primary"
-            @click="signupInfo"
-          >
-           Signup
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      </v-col>
-    </v-row>
+            </v-flex>
+          <!--Sign In Link-->
+            <v-flex lg6 class="mt-5 mb-5">
+              <h4>
+                <router-link to="/" class=" text-decoration-none ">
+                  <a class="red--text " >LogIn to Account</a>
+                </router-link>
+              </h4>
+            </v-flex>
+            <!-- Sign Up Button-->
+            <v-flex lg4 class=" mt-10 mr-n12">
+              <v-btn
+              class="mt-n8 white--text"
+              width="100"
+              color="red darken-1"
+              link
+              @click="newRegister"
+              >
+                SIGN UP
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-card-text>
   </v-card>
 </template>
 <script>
-  export default {
-    data: () => ({
-      countries: ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Anguilla', 'Antigua &amp; Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia &amp; Herzegovina', 'Botswana', 'Brazil', 'British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cambodia', 'Cameroon', 'Cape Verde', 'Cayman Islands', 'Chad', 'Chile', 'China', 'Colombia', 'Congo', 'Cook Islands', 'Costa Rica', 'Cote D Ivoire', 'Croatia', 'Cruise Ship', 'Cuba', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Estonia', 'Ethiopia', 'Falkland Islands', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'French Polynesia', 'French West Indies', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guam', 'Guatemala', 'Guernsey', 'Guinea', 'Guinea Bissau', 'Guyana', 'Haiti', 'Honduras', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Kuwait', 'Kyrgyz Republic', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macau', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Mauritania', 'Mauritius', 'Mexico', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Montserrat', 'Morocco', 'Mozambique', 'Namibia', 'Nepal', 'Netherlands', 'Netherlands Antilles', 'New Caledonia', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russia', 'Rwanda', 'Saint Pierre &amp; Miquelon', 'Samoa', 'San Marino', 'Satellite', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain', 'Sri Lanka', 'St Kitts &amp; Nevis', 'St Lucia', 'St Vincent', 'St. Lucia', 'Sudan', 'Suriname', 'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', `Timor L'Este`, 'Togo', 'Tonga', 'Trinidad &amp; Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turks &amp; Caicos', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Venezuela', 'Vietnam', 'Virgin Islands (US)', 'Yemen', 'Zambia', 'Zimbabwe'],
-      errorMessages: '',
-      name: null,
-      address: null,
-      city: null,
-      state: null,
-      zip: null,
-      country: null,
-      formHasErrors: false,
-      show3: false,
-      show4: false,
+import { mapActions, mapGetters } from "vuex";
+export default {
+  
+  data() {
+    return {
+        show3:false,
+        show4:false,
+      checkbox: false,
+      firstname:'',
+      Gender:'',
+      Email: "",
+      pasword:'',
+      cpasword:'',
+      City:'',
+      blood:'',
+      Age:'',
+      user:'',
+      cnumber:'',
       items: ['Male', 'Female'],
       items1: ['A+', 'A-','B+', 'B-','O+', 'O-','AB+', 'AB-'],
-      items2: ['Donor', 'Recipient/Receiver'],
-      email: '',
-emailRules: [
+      items2: ['Doner', 'Receiver'],
+       emailRules: [
   v => !!v || 'E-mail is required',
   v => /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'E-mail must be valid',
  ],
-    }),
-
-    computed: {
-      form () {
-        return {
-          name: this.name,
-          address: this.address,
-          city: this.city,
-          state: this.state,
-          zip: this.zip,
-          country: this.country,
+      passwordRules: [
+  v => !!v || 'Password is required',
+  v => v.length >= 6 || "Min 6 characters",
+ ],
+      
+    };
+  },
+  computed:
+  {
+   ...mapGetters(["getRegistrations"]),
+  },
+  methods:
+  {
+       ...mapActions(["Registrations"]),
+    newRegister() {
+      this.signupLoader = true;
+      this.Registrations({
+        name: this.firstname,
+        email: this.Email,
+        password: this.pasword,
+        password_confirmation:this.cpasword,
+        city:this.City,
+        blood_group:this.blood,
+        age:this.Age, 
+        user_type:this.user,
+        gender:this.Gender,
+        phone:this.cnumber,
+        
+      }).then(
+        (response) => {
+          console.log(response.data);
+          this.signupLoader = false;
+          alert("Sign Up Sucessfully");
+          this.$router.push("/");
+        },
+        (error) => {
+          console.log("error:::", error);
+          this.signupLoader = false;
+          this.snackbar = true;
+          this.text = "Something Went Wrong";
+          this.color = "error";
         }
-      },
+      );
     },
-
-    watch: {
-      name () {
-        this.errorMessages = ''
-      },
-    },
-
-    methods: {
-      addressCheck () {
-        this.errorMessages = this.address && !this.name
-          ? `Hey! I'm required`
-          : ''
-
-        return true
-      },
-      resetForm () {
-        this.errorMessages = []
-        this.formHasErrors = false
-
-        Object.keys(this.form).forEach(f => {
-          this.$refs[f].reset()
-        })
-      },
-      submit () {
-        this.formHasErrors = false
-
-        Object.keys(this.form).forEach(f => {
-          if (!this.form[f]) this.formHasErrors = true
-
-          this.$refs[f].validate(true)
-        })
-      },
-      signupInfo()
-      {
-       this.$router.push("/");
-      },
-    },
-  }
+  },
+  };
 </script>
 <style scoped>
-a{
-  text-decoration: none;
+.addSpaceRight{
+  margin-right: 250px;
+}
+.reducewidth{
+  width: 198px;
 }
 </style>

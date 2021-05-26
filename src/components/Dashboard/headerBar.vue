@@ -18,7 +18,7 @@ in drawer menu we are doing to import "DrawerMenu" component -->
     <v-app-bar app class="white--text"
     color="red darken-1" >
       >
-      <v-app-bar-nav-icon @click="drawer = !drawer" dark tile class="red lighten-3"
+      <v-app-bar-nav-icon @click="drawer = !drawer" dark tile class="red lighten-2"
         ><v-icon v-if="drawer">menu_open</v-icon>
         <v-icon v-else>menu</v-icon></v-app-bar-nav-icon
       >
@@ -34,10 +34,11 @@ in drawer menu we are doing to import "DrawerMenu" component -->
             tile
             elevation="0"
             @click="SignOutClear"
-            class="red lighten-3 white--text"
+            class="red lighten-2 white--text"
             v-bind="attrs"
             v-on="on"
           >
+          <v-icon>logout</v-icon>
           Sign Out
           </v-btn>
         </template>

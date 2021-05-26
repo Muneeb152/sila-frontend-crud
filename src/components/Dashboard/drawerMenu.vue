@@ -1,4 +1,4 @@
-<!-- This component is bulding two lists one is foe use data who loged in into system and otheis fo the navigation menu -->
+<!-- This component is bulding two lists one is used for data who loged in into system and other is to the navigation menu -->
 <template>
   <!---------------------------Drawer Card ---------------------------------->
   <v-card elevation="0" color="red darken-1" height="100vh">
@@ -96,83 +96,20 @@ export default {
       if (item.title == "Donors") {
         this.loader = false;
          this.$router.push("/Donor");
-        // this.getTranscations().then(
-        //   (response) => {
-        //     if (response.status == 200) {
-        //       this.loader = false;
-        //       this.$router.push("/Donor");
-        //     }
-        //   },
-        //   (error) => {
-        //     console.log("error::", error);
-        //     this.loader = false;
-        //   }
       } 
       else if (item.title == "Receiver") {
         this.loader = false;
         this.$router.push("/Receiver");
-        // this.getVendor().then(
-        //   (response) => {
-        //     if (response.status == 200) {
-        //       this.loader = false;
-        //       this.$router.push("/vendor-page").catch(() => {});
-        //     }
-        //   },
-        //   (error) => {
-        //     console.log("error::", error);
-        //     this.loader = false;
-        //   }
       }
         else if (item.title == "Dashboard") {
         this.loader = false;
         this.$router.push("dashboard").catch(() => {});
-        // this.getInvoicesData().then(
-        //   (response) => {
-        //     if (response.status == 200) {
-        //       this.loader = false;
-        //       this.$router.push("/invoice-page").catch(() => {});
-        //     }
-        //   },
-        //   (error) => {
-        //     console.log("error::", error);
-        //     this.loader = false;
-        //   }
-        // );
       } else if (item.title == "Employees") {
         this.loader = false;
         this.$router.push("/employee-page").catch(() => {});
-        // this.getInvoicesData().then(
-        //   (response) => {
-        //     if (response.status == 200) {
-        //       this.loader = false;
-        //       this.$router.push("/invoice-page").catch(() => {});
-        //     }
-        //   },
-        //   (error) => {
-        //     console.log("error::", error);
-        //     this.loader = false;
-        //   }
-        // );
       } else if (item.title == "Products") {
         this.loader = false;
         this.$router.push("/product-page").catch(() => {});
-        // this.getInvoicesData().then(
-        //   (response) => {
-        //     if (response.status == 200) {
-        //       this.loader = false;
-        //       this.$router.push("/invoice-page").catch(() => {});
-        //     }
-        //   },
-        //   (error) => {
-        //     console.log("error::", error);
-        //     this.loader = false;
-        //   }
-        // );
-      }
-      else if (item.title == "Customers") {
-        this.loader = false;
-        this.$router.push("/customer-page").catch(() => {});
-        
       }
     },
   },
