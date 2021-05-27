@@ -3,51 +3,55 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'SignIn',
-    component: () => import("@/views/SignIn.vue"),
-  },
-  {
-    path: '/SignUp',
-    name: 'SignUp',
-    component: () => import("@/views/SignUp.vue"),
-  },
-  {
-    path: '/ForgetPassword',
-    name: 'ForgetPassword',
-    component: () => import("@/views/ForgetPassword.vue"),
-  },
-  {
-  path: "/dashboard",
-  name: "Dashboard",
-  component: () => import("../views/Dashboard.vue"),
-  children: [
-    {
-      path: '/Donor',
-      name: 'Donor',
-      component: () => import("@/views/Donor.vue"),
+const routes = [{
+        path: '/',
+        name: 'SignIn',
+        component: () => import("@/views/SignIn.vue"),
     },
     {
-      path: '/Receiver',
-      name: 'Receiver',
-      component: () => import("@/views/Receiver.vue"),
+        path: '/SignUp',
+        name: 'SignUp',
+        component: () => import("@/views/SignUp.vue"),
     },
     {
-    path: "/dashboard",
-   name: "dashboard Home",
-  component: () => import("../views/DashboardHome.vue"),
+        path: '/ForgetPassword',
+        name: 'ForgetPassword',
+        component: () => import("@/views/ForgetPassword.vue"),
     },
-  ],
-},
+    {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: () => import("../views/Dashboard.vue"),
+        children: [{
+                path: "/dashboard",
+                name: "dashboard Home",
+                component: () => import("../views/DashboardHome.vue"),
+            },
+            {
+                path: '/Donor',
+                name: 'Donor',
+                component: () => import("@/views/Donor.vue"),
+            },
+            {
+                path: '/Receiver',
+                name: 'Receiver',
+                component: () => import("@/views/Receiver.vue"),
+            },
+            {
+                path: '/Chat',
+                name: 'Chat',
+                component: () => import("@/views/Chat.vue"),
+            },
+
+        ],
+    },
 
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router

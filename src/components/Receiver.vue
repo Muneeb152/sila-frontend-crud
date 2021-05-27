@@ -1,92 +1,127 @@
-<!-- In this Component List of All Blood Donors are Listed -->
-
+<!-- In this Component List of All Blood Receivers are Listed -->
 <template>
-  <div>
-    <!--------Data Table--------->
-    <v-data-table
-      dense
-      :headers="headers"
-      :items="getCustomersData"
-      :search="search"
-      sort-by="CustomerId"
-      class="elevation-1 ma-3"
-    >
-      <template v-slot:top>
-        <!---------Tool Bar----------->
-        <v-toolbar color="red lighten-1" flat>
-          <v-toolbar-title class="white--text"
-            >Blood  Receiver's Listing
+ <!-------- Donor Data Table--------->
+  <v-data-table
+    :headers="headers"
+    :items="getReceiversData"
+    :search="search"
+    sort-by="u_id"
+    class="elevation-1 ma-3"
+  >
+    <template v-slot:top>
+      <!---------Tool Bar----------->
+      <v-toolbar color="red lighten-1" flat>
+          <v-toolbar-title class="white--text" 
+            >Blood Receiver's Listing
           </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-card-title class="mr-15">
-            <!---------Search Bar----------->
-            <v-text-field
-              v-model="search"
-              dark
-              append-icon="mdi-magnify"
-              label="Search Receiver"
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-card-title>
-        </v-toolbar>
-      </template>
-      <template v-slot:[`item.actions`]="{item}">
-        <!---------Message Button----------->
-         <v-btn
+        <v-spacer></v-spacer>
+        <v-card-title class="mr-15">
+              <!---------Search Bar----------->
+          <v-text-field
+            v-model="search"
+            dark
+            append-icon="mdi-magnify"
+            label="Search Receiver"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-dialog v-model="dialog" max-width="500px" persistent>
+        <!---------Text Fields Used to Display Data in the Data Table----------->
+          <v-card>
+            <v-divider></v-divider>
+            <br />
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" >
+                    <v-text-field
+                      outlined
+                      dense
+                      persistent-hint
+                      v-model="receiverDetail.u_id"
+                      label="Receiver Id"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" >
+                    <v-text-field
+                      outlined
+                      dense
+                      persistent-hint
+                      v-model="receiverDetail.blood_group"
+                      label="Blood Group"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      outlined
+                      dense
+                      persistent-hint
+                      v-model="receiverDetail.name"
+                      label="Name"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      outlined
+                      dense
+                      persistent-hint
+                      v-model="name"
+                      label="City"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+    </template>
+
+    <!-------------------------------Message Button-------------------------------->
+    <template v-slot:[`item.actions`]="{ }">
+       <v-btn
        class="red lighten-2 white--text"
        outlined
-       @click="editItem(item)">
-       <v-icon>message</v-icon>
+       @click="chat">
         Message
       </v-btn>
-      </template>
-    </v-data-table>
-  </div>
+    </template>
+  </v-data-table>
 </template>
+
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
+  name: "Receiver",
   data: () => ({
-    receiver_id:'',
-    receiver_name:'',
-      Gender:'',
-      Email: "",
-      pasword:'',
-      cpasword:'',
-      City:'',
-      blood:'',
-      Age:'',
-      cnumber:'',
     dialog: false,
-    dialogDelete: false,
     search: "",
+    dialogDelete: false,
+    dialoginfo: false,
     headers: [
-      {
+       {
         text: "Receiver Id",
         align: "start",
         sortable: true,
-        value: "CustomerId",
+        value: "u_id",
       },
-      { text: "Receiver Name", value: "name" },
-      { text: "Gender", value: "name" },
-      { text: "Age", value: "CustomerEmail"},
-      { text: "Blood Group", value: "CustomerEmail"},
-      { text: "City", value: "CustomerEmail"},
-      { text: "Contact Number", value: "CustomerEmail", sortable: false },
+      { text: "Receiver Name", value: "name", sortable: false },
+      { text: "Gender", value: "gender" },
+      { text: "Age", value: "age"},
+      { text: "Blood Group", value: "blood_group"},
+      { text: "City", value: "city"},
+      { text: "Contact Number", value: "phone", sortable: false },
       { text: "Actions", value: "actions", sortable: false },
     ],
-    
+    receiverId: -1,
     editedIndex: -1,
-    customerDetail: {},
-    customerId: -1,
+    receiverDetail: {},
   }),
 
   computed: {
-    ...mapGetters(["getCustomersData"]),
-    formTitle() {
-      return this.editedIndex === -1 ? "Add Customer" : "Edit Customer";
-    },
+    ...mapGetters(["getReceiversData"]),
   },
 
   watch: {
@@ -96,55 +131,27 @@ export default {
     dialogDelete(val) {
       val || this.closeDelete();
     },
+    dialoginfo(val) {
+      val || this.close();
+    },
   },
+
   methods: {
-    ...mapActions(["addUser", "updateUser", "removeUser"]),
-    editItem(item) {
-      this.editedIndex = this.getCustomersData.findIndex(
-        (customer) => customer.CustomerId == item.CustomerId
-      );
-      this.customerDetail = item;
-      this.dialog = true;
-    },
-    deleteItem(id) {
-      this.customerId = id;
-      this.dialogDelete = true;
-    },
-
-    deleteItemConfirm() {
-      this.removeUser(this.customerId);
-      this.closeDelete();
-    },
-
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.customerDetail = {};
-        this.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.customerId= -1;
-      });
-    },
-
+    ...mapActions(["addReceiver"]),
     save() {
       if (this.editedIndex > -1) {
-        this.updateUser({
-          customerIndex: this.editedIndex,
-          updatedData: this.customerDetail,
+        this.updateReceiver({
+          ReceiverIndex: this.editedIndex,
+          updatedData: this.doctorDetail,
         });
       } else {
-        this.customerDetail.CustomerId = this.getCustomersData.length
-          ? this.getCustomersData[this.getCustomersData.length - 1]
-              .CustomerId + 1
-          : 1;
-        this.addUser(this.customerDetail);
+        this.addReceiver(this.receiverDetail);
       }
       this.close();
+    },
+     chat()
+    {
+      this.$router.push("/Chat")
     },
   },
 };

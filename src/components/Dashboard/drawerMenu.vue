@@ -62,6 +62,7 @@ export default {
       { title: "Dashboard", linkTo: "/dashboard", icon: "dashboard" },
       { title: "Donors", linkTo: "/Donor", icon: "groups" },
       { title: "Receiver", linkTo: "/Receiver", icon: "groups" },
+      { title: "Chat", linkTo: "/Chat", icon: "message" },
     ],
     employeeData: {
       empName: " ",
@@ -91,26 +92,44 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["getTranscations", "getVendor" ,"getCustomersData"]),
+     ...mapActions([ "getDonor", "getReceiver"]),
     fetchData(item) {
-      if (item.title == "Donors") {
-        this.loader = false;
-         this.$router.push("/Donor");
+       if (item.title == "Donors") {
+        this.getDonor().then(
+          (response) => {
+            if (response.status == 200) {
+              this.loader = false;
+              this.$router.push("/Donor").catch(() => {});
+            }
+          },
+          (error) => {
+            console.log("error::", error);
+            this.loader = false;
+          }
+        );
       } 
       else if (item.title == "Receiver") {
-        this.loader = false;
-        this.$router.push("/Receiver");
+        this.getReceiver().then(
+          (response) => {
+            if (response.status == 200) {
+              this.loader = false;
+              this.$router.push("/Receiver").catch(() => {});
+            }
+          },
+          (error) => {
+            console.log("error::", error);
+            this.loader = false;
+          }
+        );
       }
-        else if (item.title == "Dashboard") {
+      else if (item.title == "Dashboard") {
         this.loader = false;
-        this.$router.push("dashboard").catch(() => {});
-      } else if (item.title == "Employees") {
+        this.$router.push("/dashboard").catch(() => {});
+      } 
+      else if (item.title == "Chat") {
         this.loader = false;
-        this.$router.push("/employee-page").catch(() => {});
-      } else if (item.title == "Products") {
-        this.loader = false;
-        this.$router.push("/product-page").catch(() => {});
-      }
+        this.$router.push("/Chat").catch(() => {});
+      } 
     },
   },
 };
