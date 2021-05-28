@@ -7,7 +7,6 @@ const state = {
 const getters = {
     getDonorsData: (state) => state.DonorsData,
 };
-
 const actions = {
     getDonor({
         commit

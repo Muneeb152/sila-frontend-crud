@@ -67,7 +67,7 @@
                       outlined
                       dense
                       persistent-hint
-                      v-model="name"
+                      v-model="donorDetail.city"
                       label="Donor Address"
                     ></v-text-field>
                   </v-col>

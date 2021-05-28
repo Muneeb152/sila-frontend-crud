@@ -29,6 +29,7 @@ const actions = {
     });
   },
   SignOutClear({ commit }) {
+    router.push("/");
     let token = localStorage.getItem("token");
     axios
       .get(config.API_ROOT_URL + "logout", {
@@ -38,7 +39,6 @@ const actions = {
         console.log("sign put :::", response.data);
         commit("SignOutClear");
         router.push("/");
-
       })
       .catch(function(error) {
         alert(error);
