@@ -1,22 +1,11 @@
-<!-- This Component is used to Log In to Blood Donation System -->
 <template>
 <!--V-Card-->
-  <v-card class="justify-center pt-20 pa-18" elevation="0">
+  <v-card class="justify-center pt-20 pa-18 bg-color" elevation="0">
     <v-row>
-      <v-col cols="12" md="8" sm="6" class="mt-16 mx-auto">
-        <v-card class="pa-2  mt-8" max-width="70%" elevation="0" tile>
-            <!--Image-->
-          <img class="ml-16" width="90%" height="100%" src="@/assets/blood.webp" />
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4" sm="6" class="mt-13">
-       <v-card ref="form" width="400" class="mx-auto mr-8" >
+      <v-col cols="12" class="mt-13">
+       <v-card ref="form" width="400" class="mx-auto" >
         <v-card-text>
             <div style="text-align:center;">
-                <!--Main Heading-->
-                <h1 class="red--text">Blood Donation System</h1>
-              <br>
-              <br>
                 <!--Sign In Heading-->
            <h2 style="color:black;" class="font-weight-medium"> Sign In</h2>
            <br>
@@ -46,20 +35,15 @@
              :rules="passwordRules"
             :error-messages="errorMessages"
           ></v-text-field>
-            <!--Forgot Email Link-->
-          <router-link to="/ForgetPassword"><a class="red--text font-weight-bold ml-6 mb-2" href="">Forgot Email? </a></router-link>
-          <br>
-          <br>
-          <br>
         </v-card-text>
-        <v-card-actions class="my-n13">
+        <v-card-actions class="">
             <!--Sign Up Link-->
-            <router-link to="/SignUp"><a class="red--text font-weight-bold ml-8" href="">Create Account </a></router-link>
+            <router-link to="/SignUp"><a class=" font-weight-bold ml-8" href="">Create Account </a></router-link>
           <v-spacer></v-spacer>
             <!--Log In Button-->
           <v-btn
             class="mr-7 mb-2 white--text" 
-            color="red darken-1"
+            color="primary"
             @click="setSignInInfo"
           >
            LogIn
@@ -108,7 +92,7 @@ emailRules: [
     setSignInInfo() {
       this.loginLoader = true;
       this.SignInCredentials({
-        email: this.Email,
+        username: this.Email,
         password: this.pasword,
       }).then(
         (response) => {
@@ -130,4 +114,5 @@ emailRules: [
 a{
   text-decoration: none;
 }
+
 </style>

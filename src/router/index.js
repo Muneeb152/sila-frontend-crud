@@ -14,11 +14,6 @@ const routes = [{
         component: () => import("@/views/SignUp.vue"),
     },
     {
-        path: '/ForgetPassword',
-        name: 'ForgetPassword',
-        component: () => import("@/views/ForgetPassword.vue"),
-    },
-    {
         path: "/dashboard",
         name: "Dashboard",
         component: () => import("../views/Dashboard.vue"),
@@ -28,24 +23,13 @@ const routes = [{
                 component: () => import("../views/DashboardHome.vue"),
             },
             {
-                path: '/Donor',
+                path: '/users',
                 name: 'Donor',
-                component: () => import("@/views/Donor.vue"),
-            },
-            {
-                path: '/Receiver',
-                name: 'Receiver',
-                component: () => import("@/views/Receiver.vue"),
-            },
-            {
-                path: '/Chat',
-                name: 'Chat',
-                component: () => import("@/views/Chat.vue"),
+                component: () => import("@/views/Users.vue"),
             },
 
         ],
     },
-
 ]
 
 const router = new VueRouter({

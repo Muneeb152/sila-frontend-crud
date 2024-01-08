@@ -1,14 +1,14 @@
 <template>
   <div>
-    <Home/>
+    <User />
   </div>
 </template>
 
 <script>
-import Home from "@/components/Home.vue";
+import User from "@/components/User.vue";
 
 export default {
-  components: { Home },
+  components: { Donor },
 };
 </script>
 

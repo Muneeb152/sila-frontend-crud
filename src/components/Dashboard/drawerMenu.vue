@@ -1,7 +1,7 @@
 <!-- This component is bulding two lists one is used for data who loged in into system and other is to the navigation menu -->
 <template>
   <!---------------------------Drawer Card ---------------------------------->
-  <v-card elevation="0" color="red darken-1" height="100vh">
+  <v-card elevation="0" color="primary" height="100vh">
     <v-list>
       <v-list-item class="justify-center">
         <v-avatar color="white" rounded size="42"
@@ -60,9 +60,7 @@ export default {
     loader: false,
     items: [
       { title: "Dashboard", linkTo: "/dashboard", icon: "dashboard" },
-      { title: "Donors", linkTo: "/Donor", icon: "groups" },
-      { title: "Receiver", linkTo: "/Receiver", icon: "groups" },
-      { title: "Chat", linkTo: "/Chat", icon: "message" },
+      { title: "Users", linkTo: "/users", icon: "groups" },
     ],
     employeeData: {
       empName: " ",

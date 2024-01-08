@@ -1,31 +1,89 @@
-<!--  This is dashboard page which containe welcom messages and some tiles view that direct us to specific page -->
+<!-- src/components/ChartDisplay.vue -->
+
 <template>
-  <v-col cols="12" md="12" sm="12">
-    <!---------------------------- Welcome Row ----------------------------->
-    <v-row no-gutters class="text-center">
-      <v-col cols="12" md="12" sm="12">
-        <v-card elevation="0" class="mt-4">
-          <h1 style="color:red">Welcome to Blood Donation System</h1>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="12" sm="12">
-        <v-card elevation="0" class="mt-4">
-          <strong class="blue-grey--text text--darken-1">
-            Donate Blood, Save a Life
-          </strong>
-        </v-card>
-      </v-col>
-    </v-row>
-    <!--------------------- Tiles Views and Nevigations ------------------->
-    <v-row no-gutters class="center mt-4 mx-16">
-      <img width="100%" height="350" src="@/assets/drip.gif"/>
-    </v-row>
-    <!------------------------------------------------------------------------->
-  </v-col>
+  <div>
+    <h2>Chart Display</h2>
+    <div>
+      <button @click="showBarChart">Show Bar Chart</button>
+      <button @click="showPieChart">Show Pie Chart</button>
+    </div>
+    <div v-if="currentChart === 'bar'">
+      <canvas ref="barChart"></canvas>
+    </div>
+    <div v-if="currentChart === 'pie'">
+      <canvas ref="pieChart"></canvas>
+    </div>
+  </div>
 </template>
-<style lang="sass" scoped>
-.v-card.on-hover.theme--dark
-  background-color: rgba(#FFF, 0.8)
-  >.v-card__text
-    color: #000
+
+<script>
+import Chart from 'chart.js/auto';
+
+export default {
+  data() {
+    return {
+      currentChart: null,
+    };
+  },
+  methods: {
+    showBarChart() {
+      this.currentChart = 'bar';
+      this.renderBarChart();
+    },
+    showPieChart() {
+      this.currentChart = 'pie';
+      this.renderPieChart();
+    },
+    renderBarChart() {
+      const data = {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [
+          {
+            label: 'Sales',
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderWidth: 1,
+            data: [65, 59, 80, 81, 56],
+          },
+        ],
+      };
+
+      const options = {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      };
+
+      const ctx = this.$refs.barChart.getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    },
+    renderPieChart() {
+      const data = {
+        labels: ['Red', 'Blue', 'Yellow'],
+        datasets: [
+          {
+            data: [300, 50, 100],
+            backgroundColor: ['red', 'blue', 'yellow'],
+          },
+        ],
+      };
+
+      const ctx = this.$refs.pieChart.getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: data,
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Add your custom styles here */
 </style>

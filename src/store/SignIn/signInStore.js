@@ -17,6 +17,7 @@ const actions = {
         (response) => {
           console.log(response.data);
           localStorage.setItem("token", response.data.token);
+          console.log(localStorage.getItem("token"));
           commit("SignInCredentials", response.data);
           // http success, call the mutator and change something in state
           resolve(response); // Let the calling function know that http is done. You may send some data back
@@ -30,19 +31,20 @@ const actions = {
   },
   SignOutClear({ commit }) {
     router.push("/");
-    let token = localStorage.getItem("token");
-    axios
-      .get(config.API_ROOT_URL + "logout", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(function(response) {
-        console.log("sign put :::", response.data);
-        commit("SignOutClear");
-        router.push("/");
-      })
-      .catch(function(error) {
-        alert(error);
-      });
+    localStorage.removeItem('token');
+
+    // axios
+    //   .get(config.API_ROOT_URL + "logout", {
+    //     headers: { Authorization: `Bearer ${token}` },
+    //   })
+    //   .then(function(response) {
+    //     console.log("sign put :::", response.data);
+    //     commit("SignOutClear");
+    //     router.push("/");
+    //   })
+    //   .catch(function(error) {
+    //     alert(error);
+    //   });
   },
 };
 const mutations = {

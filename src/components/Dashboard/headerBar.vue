@@ -4,7 +4,7 @@ in drawer menu we are doing to import "DrawerMenu" component -->
   <v-app id="inspire">
     <!----------------------------Nav Drawer ----------------------------------->
     <v-navigation-drawer
-      color="red darken-1"
+      color="primary"
       v-model="drawer"
       app
       stateless
@@ -16,15 +16,15 @@ in drawer menu we are doing to import "DrawerMenu" component -->
     </v-navigation-drawer>
     <!-------------------------App BAr ---------------------------------->
     <v-app-bar app class="white--text"
-    color="red darken-1" >
+    color="primary" >
       >
-      <v-app-bar-nav-icon @click="drawer = !drawer" dark tile class="red lighten-2"
+      <v-app-bar-nav-icon @click="drawer = !drawer" dark tile class="indigo"
         ><v-icon v-if="drawer">menu_open</v-icon>
         <v-icon v-else>menu</v-icon></v-app-bar-nav-icon
       >
 
       <v-toolbar-title style="cursor: pointer"
-        >Blood Donation System</v-toolbar-title
+        >Demo App</v-toolbar-title
       >
       <v-spacer></v-spacer>
       <!------------------------- Sign Out Button ------------------------->
@@ -34,7 +34,7 @@ in drawer menu we are doing to import "DrawerMenu" component -->
             tile
             elevation="0"
             @click="SignOutClear"
-            class="red lighten-2 white--text"
+            class="indigo white--text"
             v-bind="attrs"
             v-on="on"
           >

@@ -15,7 +15,7 @@ const Register = {
       return new Promise((resolve, reject) => {
         console.log("new resistration::", newRegistartion);
         axios
-          .post(config.API_ROOT_URL + "register", newRegistartion)
+          .post(config.API_ROOT_URL + "signup", newRegistartion)
           .then(function(response) {
             console.log(response.data);
             commit("Registrations", newRegistartion);
